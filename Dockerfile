@@ -16,9 +16,8 @@ ENV YARN_CHECKSUM_BEHAVIOR=update
 # git
 RUN apt-get update && apt-get install -y git
 
-RUN npm install -g corepack && \
-    corepack enable && \
-    corepack prepare yarn@3.6.3 --activate
+RUN npm install -g corepack && corepack enable
+RUN yarn set version 3.6.3
 RUN yarn install
 
 # App
