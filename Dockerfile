@@ -82,12 +82,12 @@ RUN \
 # Final
 #
 FROM node:${NODE_IMAGE_TAG} AS release
-
-# Gunakan mode ringan
-ENV PUPPETEER_SKIP_DOWNLOAD=true
-ENV USE_BROWSER=none
-ENV WHATSAPP_DEFAULT_ENGINE=noweb
+ENV PUPPETEER_SKIP_DOWNLOAD=True
 ENV NODE_OPTIONS="--max-old-space-size=16384"
+ENV WHATSAPP_DEFAULT_ENGINE=noweb  # 👈 Tambahkan baris ini
+ARG USE_BROWSER=chromium
+
+RUN echo "USE_BROWSER=$USE_BROWSER"
 
 # Install hanya yang perlu
 RUN apt-get update && apt-get install -y \
